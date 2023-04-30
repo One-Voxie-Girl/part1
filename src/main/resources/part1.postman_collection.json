@@ -1,3 +1,345 @@
 {
-	"info": "Placeholder file, replace this content with your Postman Collection"
+	"info": {
+		"_postman_id": "a9e037e6-ecc7-4924-822c-f01e34a05cdf",
+		"name": "part1.postman_collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Convenors",
+			"item": [
+				{
+					"name": "Convenors get",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/convenors",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"convenors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Convenor post",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Jose persons\",\r\n    \"position\": \"PROFESSOR\",\r\n    \"modules\": [\r\n        {\r\n            \"code\": \"CO2103\",\r\n            \"title\": \"Software Architecture\",\r\n            \"level\": 2,\r\n            \"optional\": false,\r\n            \"sessions\": [\r\n                {\r\n                    \"id\": 1,\r\n                    \"topic\": \"REST APIs\",\r\n                    \"datetime\": \"2022-02-25T12:00:00.000+00:00\",\r\n                    \"duration\": 2\r\n                }\r\n            ]\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/convenors",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"convenors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Convenor Get",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/convenors/5",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"convenors",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Convenor Put",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/convenor/5",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"convenor",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Convenor modules get",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Modules",
+			"item": [
+				{
+					"name": "Modules get",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/modules",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"modules"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Module get",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/modules",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"modules"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Module Post",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"code\": \"CO3096\",\r\n    \"title\": \"Software Quality degredation\",\r\n    \"level\": 3,\r\n    \"optional\": true,\r\n    \"sessions\": [\r\n        {\r\n            \"id\": 2,\r\n            \"topic\": \"Unit Testing\",\r\n            \"datetime\": \"2022-02-28T14:00:00.000+00:00\",\r\n            \"duration\": 2\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/modules",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"modules"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Module patch",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"code\": \"CO3095\",\r\n    \"title\": \"Software Quality Testing\",\r\n    \"level\": 4,\r\n    \"optional\": false,\r\n    \"sessions\": [\r\n        {\r\n            \"id\": 2,\r\n            \"topic\": \"Unit Testing\",\r\n            \"datetime\": \"2022-02-28T14:00:00.000+00:00\",\r\n            \"duration\": 2\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/modules/CO3095",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"modules",
+								"CO3095"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Module sessions get",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/modules/CO3095/sessions",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"modules",
+								"CO3095",
+								"sessions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Module sessions post",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 3,\r\n    \"topic\": \"Unit Testing 2\",\r\n    \"datetime\": \"2022-02-28T14:00:00.000+00:00\",\r\n    \"duration\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/modules/CO3095/sessions",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"modules",
+								"CO3095",
+								"sessions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Module sessions put",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"topic\": \"Unit Testing qwerty\",\r\n    \"datetime\": \"2022-03-28T14:00:00.000+00:00\",\r\n    \"duration\": 5\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/modules/CO3095/sessions/2",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"modules",
+								"CO3095",
+								"sessions",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/modules/CO3095/sessions/2",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"modules",
+								"CO3095",
+								"sessions",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Module Session get",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/modules/CO3095/sessions/5",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"modules",
+								"CO3095",
+								"sessions",
+								"5"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Sessions",
+			"item": [
+				{
+					"name": "Sessions delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/sessions",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"sessions"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
 }
