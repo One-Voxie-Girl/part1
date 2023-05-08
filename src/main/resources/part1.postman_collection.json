@@ -1,24 +1,41 @@
 {
 	"info": {
-		"_postman_id": "a9e037e6-ecc7-4924-822c-f01e34a05cdf",
+		"_postman_id": "ec38100c-0727-4902-90c2-9caa8a221f2a",
 		"name": "part1.postman_collection",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27206401"
 	},
 	"item": [
 		{
 			"name": "Convenors",
 			"item": [
 				{
-					"name": "Convenors get",
+					"name": "Convenors Get",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"OK Response\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Empty convenor\", function () {\r",
+									"    pm.response.to.have.status(204);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8080/convenors",
+							"raw": "{{base_url}}/convenors",
 							"host": [
-								"localhost"
+								"{{base_url}}"
 							],
-							"port": "8080",
 							"path": [
 								"convenors"
 							]
@@ -27,7 +44,24 @@
 					"response": []
 				},
 				{
-					"name": "Convenor post",
+					"name": "Convenor Post",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Entry succesfully made\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Convenor ID already exists\", function () {\r",
+									"    pm.response.to.have.status(409);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -41,11 +75,10 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8080/convenors",
+							"raw": "{{base_url}}/convenors",
 							"host": [
-								"localhost"
+								"{{base_url}}"
 							],
-							"port": "8080",
 							"path": [
 								"convenors"
 							]
@@ -54,19 +87,35 @@
 					"response": []
 				},
 				{
-					"name": "Convenor Get",
+					"name": "Convenor Get ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"OK Response\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Convenor not found\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8080/convenors/5",
+							"raw": "{{base_url}}/convenors/3",
 							"host": [
-								"localhost"
+								"{{base_url}}"
 							],
-							"port": "8080",
 							"path": [
 								"convenors",
-								"5"
+								"3"
 							]
 						}
 					},
@@ -74,15 +123,31 @@
 				},
 				{
 					"name": "Convenor Put",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"OK Response\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Convenor not found\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "PUT",
 						"header": [],
 						"url": {
-							"raw": "localhost:8080/convenor/5",
+							"raw": "{{base_url}}/convenor/5",
 							"host": [
-								"localhost"
+								"{{base_url}}"
 							],
-							"port": "8080",
 							"path": [
 								"convenor",
 								"5"
@@ -92,10 +157,77 @@
 					"response": []
 				},
 				{
-					"name": "Convenor modules get",
+					"name": "Convenor Delete",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"OK Response\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Empty convenor\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Internal Error\", function () {\r",
+									"    pm.response.to.have.status(500);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/convenors/5",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"convenors",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Convenor Modules Get",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"OK Response\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Empty Modules\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
-						"header": []
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/convenors/3/modules",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"convenors",
+								"3",
+								"modules"
+							]
+						}
 					},
 					"response": []
 				}
@@ -105,34 +237,32 @@
 			"name": "Modules",
 			"item": [
 				{
-					"name": "Modules get",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "localhost:8080/modules",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"modules"
-							]
+					"name": "Modules Get",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"OK Response\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Empty Modules\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
 						}
-					},
-					"response": []
-				},
-				{
-					"name": "Module get",
+					],
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8080/modules",
+							"raw": "{{base_url}}/modules",
 							"host": [
-								"localhost"
+								"{{base_url}}"
 							],
-							"port": "8080",
 							"path": [
 								"modules"
 							]
@@ -142,6 +272,27 @@
 				},
 				{
 					"name": "Module Post",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"OK Response\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Module ID Conflict\", function () {\r",
+									"    pm.response.to.have.status(409);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"BAD Request\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -155,11 +306,10 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8080/modules",
+							"raw": "{{base_url}}/modules",
 							"host": [
-								"localhost"
+								"{{base_url}}"
 							],
-							"port": "8080",
 							"path": [
 								"modules"
 							]
@@ -168,7 +318,63 @@
 					"response": []
 				},
 				{
-					"name": "Module patch",
+					"name": "Module Get ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"OK Response\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Module not found\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/modules/CO2103",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"modules",
+								"CO2103"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Module Patch",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"OK Response\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Module not Found\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Internal Server Error\", function () {\r",
+									"    pm.response.to.have.status(500);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "PATCH",
 						"header": [],
@@ -182,11 +388,10 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8080/modules/CO3095",
+							"raw": "{{base_url}}/modules/CO3095",
 							"host": [
-								"localhost"
+								"{{base_url}}"
 							],
-							"port": "8080",
 							"path": [
 								"modules",
 								"CO3095"
@@ -196,16 +401,75 @@
 					"response": []
 				},
 				{
-					"name": "Module sessions get",
+					"name": "Module Delete",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"OK Response\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Module not Found\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Internal Server Error\", function () {\r",
+									"    pm.response.to.have.status(500);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/modules/CO3096",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"modules",
+								"CO3096"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Module Sessions Get",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"OK Response\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Module has no sessions / Module not found\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Internal Server Error\", function () {\r",
+									"    pm.response.to.have.status(500);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8080/modules/CO3095/sessions",
+							"raw": "{{base_url}}/modules/CO3095/sessions",
 							"host": [
-								"localhost"
+								"{{base_url}}"
 							],
-							"port": "8080",
 							"path": [
 								"modules",
 								"CO3095",
@@ -216,7 +480,28 @@
 					"response": []
 				},
 				{
-					"name": "Module sessions post",
+					"name": "Module Session Post",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Session Created\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Module not Found\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Internal Server Error\", function () {\r",
+									"    pm.response.to.have.status(500);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -230,11 +515,10 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8080/modules/CO3095/sessions",
+							"raw": "{{base_url}}/modules/CO3095/sessions",
 							"host": [
-								"localhost"
+								"{{base_url}}"
 							],
-							"port": "8080",
 							"path": [
 								"modules",
 								"CO3095",
@@ -245,7 +529,28 @@
 					"response": []
 				},
 				{
-					"name": "Module sessions put",
+					"name": "Module Session Put",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"OK Response\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Module / Session not found\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Internal Server Error\", function () {\r",
+									"    pm.response.to.have.status(500);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "PUT",
 						"header": [],
@@ -259,58 +564,147 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8080/modules/CO3095/sessions/2",
+							"raw": "{{base_url}}/modules/CO3095/sessions/6",
 							"host": [
-								"localhost"
+								"{{base_url}}"
 							],
-							"port": "8080",
 							"path": [
 								"modules",
 								"CO3095",
 								"sessions",
-								"2"
+								"6"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "New Request",
+					"name": "Module Session Patch",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"OK Response\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Module / Session not found\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Internal Server Error\", function () {\r",
+									"    pm.response.to.have.status(500);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"topic\": \"Unit Testing qwerty\",\r\n    \"datetime\": \"2022-03-28T14:00:00.000+00:00\",\r\n    \"duration\": 5\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/modules/CO3095/sessions/10",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"modules",
+								"CO3095",
+								"sessions",
+								"10"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Module Session Delete",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"OK Response\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Module / Session not Found\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Internal Server Error\", function () {\r",
+									"    pm.response.to.have.status(500);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "localhost:8080/modules/CO3095/sessions/2",
+							"raw": "{{base_url}}/modules/CO3095/sessions/10",
 							"host": [
-								"localhost"
+								"{{base_url}}"
 							],
-							"port": "8080",
 							"path": [
 								"modules",
 								"CO3095",
 								"sessions",
-								"2"
+								"10"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "Module Session get",
+					"name": "Module Session Get",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"OK Response\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Module / Session not Found\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Internal Server Error\", function () {\r",
+									"    pm.response.to.have.status(500);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8080/modules/CO3095/sessions/5",
+							"raw": "{{base_url}}/modules/CO3095/sessions/8",
 							"host": [
-								"localhost"
+								"{{base_url}}"
 							],
-							"port": "8080",
 							"path": [
 								"modules",
 								"CO3095",
 								"sessions",
-								"5"
+								"8"
 							]
 						}
 					},
@@ -322,16 +716,36 @@
 			"name": "Sessions",
 			"item": [
 				{
-					"name": "Sessions delete",
+					"name": "Sessions Delete All",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"OK Response\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Sessions not Found\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Internal Server Error\", function () {\r",
+									"    pm.response.to.have.status(500);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "localhost:8080/sessions",
+							"raw": "{{base_url}}/sessions",
 							"host": [
-								"localhost"
+								"{{base_url}}"
 							],
-							"port": "8080",
 							"path": [
 								"sessions"
 							]
@@ -340,6 +754,12 @@
 					"response": []
 				}
 			]
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "localhost:8080"
 		}
 	]
 }
