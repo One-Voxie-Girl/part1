@@ -65,7 +65,9 @@ public class ModuleRestController {
             currentModule.setLevel(newModule.getLevel());
             currentModule.setOptional(newModule.isOptional());
             currentModule.getSessions().clear();
-            currentModule.setSessions(newModule.getSessions());
+            for (Session session : newModule.getSessions()) {
+                currentModule.addSession(session);
+            }
             repo.save(currentModule);
             return new ResponseEntity<Module>(currentModule, HttpStatus.OK);
         } else
@@ -188,28 +190,24 @@ public class ModuleRestController {
 
         if (repo.findById(code).isPresent()) {
             Module currentModule = repo.findById(code).get();
-            List<Session> currentSessions=currentModule.getSessions();
-            for (int i = 0; i < currentSessions.size(); i++){
-                if (currentSessions.get(i).getId()==id){
+            List<Session> currentSessions = currentModule.getSessions();
+
+            for (int i = 0; i < currentSessions.size(); i++) {
+                if (currentSessions.get(i).getId() == id) {
                     currentSessions.remove(i);
                     currentModule.setSessions(currentSessions);
                     repo.save(currentModule);
                     return ResponseEntity.ok(null);
-                }else {
-                    return new ResponseEntity<ErrorInfo>(new ErrorInfo("Module with code " + code + " not found."),
-                            HttpStatus.NOT_FOUND);
                 }
-
             }
 
-
+            // Move the error response outside the loop
+            return new ResponseEntity<ErrorInfo>(new ErrorInfo("Session with ID " + id + " not found."),
+                    HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<ErrorInfo>(new ErrorInfo("Module with code " + code + " not found."),
-                    HttpStatus.NOT_FOUND);
-
-
+                HttpStatus.NOT_FOUND);
     }
-
 
     @GetMapping("/modules/{code}/sessions/{id}")
     public ResponseEntity<?> getModuleSession(@PathVariable("code") String code,@PathVariable("id") long id) {

@@ -78,6 +78,7 @@ public class ConvenorRestController {
     public ResponseEntity<?> deleteConvenor(@PathVariable("id") long id) {
 
         if (repo.findById(id).isPresent()) {
+            repo.findById(id).get().getModules().clear();
             repo.deleteById(id);
             return ResponseEntity.ok(null);
         } else

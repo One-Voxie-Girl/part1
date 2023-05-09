@@ -78,4 +78,9 @@ public class Module {
 	public void setSessions(List<Session> sessions) {
 		this.sessions = sessions;
 	}
+
+	public void addSession(Session session) {
+		sessions.add(session);
+	}
+
 }
