@@ -33,12 +33,6 @@ paths:
                   $ref: '#/components/schemas/Convenor'
         '204':
           description: No convenors to show
-        '400':
-          description: Bad request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorInfo'
     post:
       tags:
         - convenor
@@ -54,6 +48,10 @@ paths:
           description: Created
         '409':
           description: Convenor id already exists
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorInfo'
   /convenors/{id}:
     get:
       summary: Returns a convenor
@@ -102,6 +100,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Convenor'
+        '404':
+          description: Convenor not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorInfo'
     delete:
       tags:
         - convenor
@@ -164,12 +168,6 @@ paths:
                   $ref: '#/components/schemas/Module'
         '204':
           description: No modules to show
-        '400':
-          description: Bad request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorInfo'
     post:
       summary: Creates a module
       tags:
@@ -185,6 +183,10 @@ paths:
           description: Created
         '409':
           description: Module code already exists
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorInfo'
   /modules/{code}:
     get:
       summary: Returns a module

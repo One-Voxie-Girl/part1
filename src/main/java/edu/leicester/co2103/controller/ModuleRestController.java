@@ -74,7 +74,7 @@ public class ModuleRestController {
 
     }
 
-    @DeleteMapping("/modules/{id}")
+    @DeleteMapping("/modules/{code}")
     public ResponseEntity<?> deleteModule(@PathVariable("code") String code) {
 
         if (repo.findById(code).isPresent()) {
@@ -223,11 +223,6 @@ public class ModuleRestController {
             }
             return new ResponseEntity<ErrorInfo>(new ErrorInfo("Session with id " + id + " not found"),
                     HttpStatus.NOT_FOUND);
-
-
-
-
-
 
         } else
             return new ResponseEntity<ErrorInfo>(new ErrorInfo("Module with code " + code + " not found"),
